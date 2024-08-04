@@ -46,6 +46,7 @@
                         <input type="text" name="quantitySP" id="quantitySP" class="form-control mt-3">
                     </div>
                     <button class="btn btn-success mt-3 mb-5">Thêm mới</button>
+                    <a href="{{ route('admin.products.listProduct') }}" class="btn btn-primary mt-3 mb-5">Quay lại</a>
                 </form>
             </div>
         </div>

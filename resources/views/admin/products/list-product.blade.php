@@ -9,8 +9,8 @@
 @push('styles')
     <style>
         .img-product{
-            width: 200px;
-            height: 100px;
+            width: 100px;
+            height: 150px;
             object-fit: cover;
         } 
     </style>
@@ -74,12 +74,12 @@
                                     </thead>
                                     <tbody>
                                             @foreach ($listProduct as $key => $value)
-                                                <tr>
+                                                <tr class="text-center">
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $value->name }}</td>
                                                     <td>{{ $value->price}}</td>
                                                     <td>{{ $value->description}}</td>
-                                                    <td><img src="{{ asset($value->image) }}" class="img-product"></td>
+                                                    <td><img src="{{ asset($value->image) }}" class="img-product" alt="Ảnh không hiển thị"></td>
                                                     <td>{{ $value->quantity}}</td>
                                                     <td>{{ $value->category_name}}</td>
                                                     <td>

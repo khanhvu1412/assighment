@@ -31,34 +31,41 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
-                        <img src="{{ asset('stylecss/img/sontung.jpg') }}" alt="Image" width="465px" height="447px">
+                        <img src="{{ asset('stylecss/img/sontung.jpg') }}" alt="Image" width="465px" height="520px">
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Đăng ký!</h1>
                             </div>
-                            <form class="user">
+                            @if (session('message'))
+                                <h6 class="alert alert-danger">{{ session('message') }}</h6>
+                            @endif
+                            <form class="user" action="{{ route('postRegister') }}" method="post">
+                                @csrf
                                 <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" 
-                                        placeholder="Name">
+                                        <input type="text" class="form-control form-control-user" name="name" id="name" 
+                                        placeholder="Name ...">
                                 </div>
                                 <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email">
+                                        <input type="email" class="form-control form-control-user" name="email" id="email"
+                                        placeholder="Email ...">
                                 </div>
+                                {{-- <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="address" id="address"
+                                    placeholder="Address ...">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="phone" id="phone"
+                                    placeholder="Phone ...">
+                                </div> --}}
                                 <div class="form-group ">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" 
-                                        placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" name="password" id="password" 
+                                        placeholder="Password ...">
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Đăng ký
-                                </a>
+                                <button class="btn btn-primary btn-user btn-block">Đăng ký</button>
                             </form>
                             <hr>
-                            {{-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div> --}}
                             <div class="text-center">
                                 <a class="small" href="{{ route('login') }}">Bạn đã có tài khoản? Đăng nhập ngay!</a>
                             </div>

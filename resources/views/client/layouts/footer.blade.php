@@ -19,10 +19,9 @@
 						<h3 class="widget-title">THEO DÕI CHÚNG TÔI</h3>
 						<div class="content">
 							<ul>
-								<li><a href="index.php">Trang chủ</a></li>
-								<li><a href="index.php?act=about">About</a></li>
-								<li><a href="index.php?act=lienhe">Liên hệ</a></li>
-								<li><a href="index.php?act=addgiohang">Giỏ hàng</a></li>
+								<li><a href="{{ route('client.shops.home') }}">Trang chủ</a></li>
+								<li><a href="{{ route('client.shops.lienHe') }}">Liên hệ</a></li>
+								<li><a href="{{ route('client.shops.about') }}">About</a></li>
 
 
 							</ul>

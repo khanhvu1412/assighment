@@ -10,13 +10,16 @@
 					</div>
 					<div class="col-sm-12 col-md-10">
 						<div class="box-control">
-							<form class="box-search show-icon">
+							
+							<form action="{{ route('client.shops.searchProduct') }}" class="box-search show-icon" method="get">
+								{{-- @csrf --}}
 								<span class="icon"><span class="pe-7s-search"></span></span>
 								<div class="inner">
-									<input type="text" class="search" placeholder="Search here...">
-									<button class="button-search"><span class="pe-7s-search"></span></button>
+									<input type="text" name="query" class="search" placeholder="Tìm kiếm...">
+									<button type="submit" class="button-search"><span class="pe-7s-search"></span></button>
 								</div>
 							</form>
+
 							<div class="mini-cart">
 								<a class="cart-link" href="#"><span class="pe-7s-cart"></span> <span
 										class="count">3</span></a>
@@ -58,29 +61,43 @@
 								<span class="icon pe-7s-config"></span>
 								<div class="settings-wrapper ">
 									<div class="setting-content"> 
+
+										@if ( Auth::check() )
 										<div class="setting-option">
 											<ul>
-												<li><a href="#"><i class="icon-user icons"></i><span>Hồ sơ</span></a>
-												</li>
-												<li><a href="{{route('login')}}"><i class="icon-lock-open icons"></i><span>Đăng ký | Đăng nhập</span></a></li>
+												<p>Xin chào {{ Auth::user()->name }}</p>
+												<li><a href="{{ route('client.shops.userInfo') }}"><i class="icon-user icons"></i><span>Hồ sơ</span></a></li>
+													@if (Auth::user()->role == '1' )
+													<li><a href="{{ route('admin.products.listProduct') }}"><i class="icon-user icons"></i><span>Trang quản trị</span></a></li>
+													@endif
+												<li><a href="{{ route('logout') }}"><i class="icon-user icons"></i><span>Đăng xuất</span></a></li>
 											</ul>
 										</div>
+											
+										@else
+											<div class="setting-option">
+												<ul>
+													<li><a href="{{route('register')}}"><i class="icon-lock-open icons"></i><span>Đăng ký </span></a></li>
+													<li><a href="{{route('login')}}"><i class="icon-lock-open icons"></i><span>Đăng nhập</span></a></li>
+												</ul>
+											</div>
+										@endif
 									</div>
 								</div>
 							</div>
 						</div>
 						<ul class="boutique-nav main-menu clone-main-menu">
 							<li class="menu-item-has-children item-megamenu">
-								<a href="#">HOME</a>
+								<a href="{{ route('client.shops.home') }}">HOME</a>
 							</li>
 							<li class="menu-item-has-children item-megamenu">
-								<a href="#">SHOP</a>
+								<a href="{{ route('client.shops.listProduct') }}">SHOP</a>
 							</li>
 							<li class="menu-item-has-children item-megamenu">
-								<a href="#">LIÊN HỆ</a>
+								<a href="{{ route('client.shops.lienHe') }}">LIÊN HỆ</a>
 							</li>
 							<li class="menu-item-has-children">
-								<a href="#">ABOUT</a>
+								<a href="{{ route('client.shops.about') }}">ABOUT</a>
 							</li>
 						</ul>
 						<span class="mobile-navigation"><i class="fa fa-bars"></i></span>
@@ -91,17 +108,3 @@
 	</div>
 </header>
 
-<!-- Start Imgslide -->
-<div class="home-slide9 owl-carousel nav-style2 nav-center-center" data-items="1" data-nav="true" data-dots="false"
-	data-loop="true" data-autoplay="true">
-	<div class="item-slide">
-		<img src="{{ asset('style/images/slides/21.jpg') }}" alt="">
-	</div>
-	<div class="item-slide">
-		<img src="{{ asset('style/images/slides/22.jpg') }}" alt="">
-	</div>
-	<div class="item-slide">
-		<img src="{{ asset('style/images/slides/23.jpg') }}" alt="">
-	</div>
-</div>
-<!-- End Imgslide -->

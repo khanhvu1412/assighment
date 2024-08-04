@@ -49,7 +49,7 @@
                                 <p>
                                     Ảnh sản phẩm: 
                                     <br>
-                                    <img src="{{ asset($product->image) }}" class="img-product" alt="File bị lỗi">
+                                    <img src="{{ asset($product->image) }}" class="img-product mt-3" alt="File bị lỗi">
                                 </p>
                                 <p>
                                     Mô tả sản phẩm: 
@@ -57,7 +57,7 @@
                                 </p>
                                 <p>
                                     Danh mục sản phẩm: 
-                                    <span class="font-weight-bold" value="">{{ $product->category_id }}</span>
+                                    <span class="font-weight-bold" value="">{{ $product->cate_name }}</span>
                                 </p>
                                 <p>
                                     Số lượng sản phẩm: 

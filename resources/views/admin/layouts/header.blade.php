@@ -27,12 +27,14 @@
                 data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
                 <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
                     id="kt_app_header_menu" data-kt-menu="true">
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <span class="menu-link">
-                            <span class="menu-title">Dashboards</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
+                    <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
+                        <a href="{{ route('admin.products.listProduct') }}" >
+                            <span class="menu-link">
+                                <span class="menu-title">Dashboards</span>
+                                <span class="menu-arrow d-lg-none"></span>
+                            </span>
+                        </a>
                     </div>
                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
                         class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
@@ -40,46 +42,53 @@
                             <span class="menu-title">Quản lý</span>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
-                        <div
-                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
+                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
                             <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
                                 data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-bank fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
+                                <a href="{{ route('admin.categories.listCategory') }}">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <i class="ki-duotone ki-bank fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </span>
+                                        <span class="menu-title">Quản lý danh mục</span> 
+                                        {{-- đơnvị --}}
                                     </span>
-                                    <span class="menu-title">Quản lý đơn vị</span>
-                                </span>
+                                </a>
                             </div>
                             <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
                                 data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-address-book fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
+                                <a href="{{ route('admin.products.listProduct') }}">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <i class="ki-duotone ki-element-7 fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </span>
+                                        <span class="menu-title">Quản lý sản phẩm</span>
+                                        {{-- bộ tiêu chuẩn --}}
                                     </span>
-                                    <span class="menu-title">Quản lý nhân sự</span>
-                                </span>
+                                </a>
                             </div>
                             <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
                                 data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-element-7 fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
+                                <a href="{{ route('admin.users.listUsers') }}">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <i class="ki-duotone ki-address-book fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                                <span class="path3"></span>
+                                            </i>
+                                        </span>
+                                        <span class="menu-title">Quản lý nhân sự</span>
                                     </span>
-                                    <span class="menu-title">Quản lý bộ tiêu chuẩn</span>
-                                </span>
+                                </a>
                             </div>
-                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                            {{-- <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
                                 data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
@@ -90,9 +99,19 @@
                                     </span>
                                     <span class="menu-title">Phân quyền</span>
                                 </span>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
+                        
+                        <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
+                            <a href="{{ route('client.shops.home') }}">
+                            <span class="menu-link">
+                                <span class="menu-title">Trang web</span>
+                                <span class="menu-arrow d-lg-none"></span>
+                            </span>
+                            </a>
+                        </div>
                 </div>
             </div>
             <div class="app-navbar flex-shrink-0">
@@ -227,16 +246,19 @@
                         <div class="menu-item px-3">
                             <div class="menu-content d-flex align-items-center px-3">
                                 <div class="d-flex flex-column">
+                                    @if ( Auth::check() )
                                     <div class="fw-bold d-flex align-items-center fs-5">
-                                        Robert Fox
+                                        {{ Auth::user()->name }}
                                     </div>
-                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">robert@kt.com</a>
+                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="account/overview.html" class="menu-link px-5">My Profile</a>
+                            <a href="account/overview.html" class="menu-link px-5">Hồ sơ</a>
                         </div>
                         {{-- <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                             data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
@@ -264,7 +286,7 @@
                             </div>
                         </div> --}}
                         <div class="menu-item px-5">
-                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
+                            <a href="{{ route('logout') }}" class="menu-link px-5">Đăng xuất</a>
                         </div>
                     </div>
                 </div>

@@ -1069,7 +1069,7 @@ blockquote.style2:after{
     color: #222;
     text-transform: uppercase;
     vertical-align: middle;
-    padding-top:55px;
+    padding-top: 50px;
 }
 .category-menu li>a:hover{
     color: #c99947;
