@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Session;
 use Illuminate\Support\Facades\Mail;
+
 // use Illuminate\Support\Str;
 
 class AuthenController extends Controller
@@ -45,16 +46,16 @@ class AuthenController extends Controller
             session()->put('user_id', Auth::id());
 
             // Đăng nhập thành công
-            if(Auth::user()->role == '1'){
+            if (Auth::user()->role == '1') {
                 return redirect()->route('admin.dashboard')->with([
                     'message' => 'Đăng nhập thành công'
                 ]);
-            }else{
+            } else {
                 // Đăng nhập vào user
                 // echo ("Đăng nhập vào user");
                 return redirect()->route('client.shops.home');
             }
-            
+
         } else {
             return redirect()->back()->with([
                 'messageError' => 'Email hoặc mật khẩu không đúng'
@@ -75,26 +76,42 @@ class AuthenController extends Controller
         return view('register');
     }
 
-    public function postRegister(Request $req){
+    public function postRegister(Request $req)
+    {
+        
         $check = User::where('email', $req->email)->exists();
-        if($check){
+        if ($check) {
             return redirect()->back()->with([
                 'message' => 'Tài khoản email đã tồn tại'
             ]);
-        }else{
+        } else {
+
+            $linkImage = '';
+            if ($req->hasFile('image')){
+            $image = $req->file('image');
+            $newName = time() . '.' . $image->getClientOriginalExtension();
+            $linkStorage = 'imageUsers/';
+            $image->move(public_path($linkStorage), $newName);
+
+            $linkImage = $linkStorage . $newName;
+            }
+
             $data = [
                 'name' => $req->name,
                 'email' => $req->email,
+                'phone' => $req->phone,
+                'address' => $req->address,
                 'password' => Hash::make($req->password),
+                'image' => $linkImage
             ];
 
             $newUser = User::create($data);
 
-        // if(!$newUser){
-        //     return redirect()->back()->withErrors('Đã có lỗi xảy ra khi đăng ký');
-        // }
+            // if(!$newUser){
+            //     return redirect()->back()->withErrors('Đã có lỗi xảy ra khi đăng ký');
+            // }
             // Gửi mail thông báo
-            Mail::to($newUser->email)->send(new NewUserRegister($newUser));
+            // Mail::to($newUser->email)->send(new NewUserRegister($newUser));
 
             // C1
             // Auth::login( $newUser ); // Tự dộng đăng nhập cho user này
@@ -109,12 +126,15 @@ class AuthenController extends Controller
         }
     }
 
-    public function forgotPassword(){
+
+    public function forgotPassword()
+    {
         return view('forgot_password');
     }
 
-    public function check_forgot_password(Request $req){
-        
+    public function check_forgot_password(Request $req)
+    {
+
         // $user = User::where('email', 'like', $req->email)->first();
         // if(!empty($user)){
         //     $req->validate([
@@ -123,7 +143,7 @@ class AuthenController extends Controller
         //         'email.required' => 'Email không được để trống',
         //         'email.email' => 'Email không đúng định dạng',
         //     ]);
-    
+
         //     $customer = User::where('email', $req->email)->first();
         //     // dd($user);
         //     $token = Str::random(50);
@@ -132,7 +152,7 @@ class AuthenController extends Controller
         //         'token' => $token
         //     ];
         //     // dd($tokenData);
-    
+
         //     if(CustomerResetToken::create($tokenData)){
         //         Mail::to($req->email)->send(new ForgotPassword($customer, $token));
         //         return redirect()->route('login')->with([
@@ -144,7 +164,7 @@ class AuthenController extends Controller
         //         'message' => 'Lỗi không lấy được mật khẩu'
         //     ]);
         // }
-        
+
         // dd($tokenData);
         // dd($user);
     }

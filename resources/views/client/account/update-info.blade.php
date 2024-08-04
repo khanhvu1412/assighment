@@ -15,30 +15,35 @@
         <div class="wrapper">
             <div class="login ">
                 <h1 class="text-center">Cập nhật tài khoản</h1>
-                <form action="" method="post" class="form-login" enctype="multipart/form-data">
+                
+                <form action="{{ route('client.shops.updatePatchInfo') }}" method="post" class="form-login" enctype="multipart/form-data">
+                    @csrf
+                    @method('patch')
+                        @if (session('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif  
                     <div class="form-input">
                         <p>Name</p>
-                        <input type="text" class="form-control" name="email" value="{{ $user->name }}">
+                        <input type="text" class="form-control" name="nameUS" value="{{ $user->name }}">
                     </div>
                     <div class="form-input">
                         <p>Email</p>
-                        <input type="text" class="form-control" name="email" value="{{ $user->email }}">
+                        <input type="text" class="form-control" name="emailUS" value="{{ $user->email }}">
                     </div>
-                    {{-- <div class="form-input">
-                        <p>Ảnh</p>img 
-                        <input type="file" class="form-control" name="img" value="">
-                        <br>
-                    </div> --}}
-                    
-
-                    {{-- <div class="form-input">
+                    <div class="form-input">
+                        <p>Ảnh</p>
+                        <input type="file" class="form-control" name="imageUS" value="{{ $user->image }}">
+                    </div>    
+                    <div class="form-input">
                         <p>Số điện thoại</p>
-                        <input type="text" name="sdt" value="">
+                        <input type="text" name="phoneUS" value="{{ $user->phone }}">
                     </div>
                     <div class="form-input">
                         <p>Địa chỉ</p>
-                        <input type="text" name="diachi" value="">
-                    </div> --}}
+                        <input type="text" name="addressUS" value="{{ $user->address }}">
+                    </div>
                     <div class="nut text-center w-75">
                         <div class="login-btn">
                             <input type="submit" name="capnhattk" value="Cập nhật" onclick="return confirmCapnhattk()">

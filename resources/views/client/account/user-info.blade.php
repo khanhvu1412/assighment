@@ -23,7 +23,7 @@
                         <div class="product-detail-image style2">
 
                             <div class="main-image-wapper">
-                                <img class="main-image" src="" alt="Không hiển thị ảnh">
+                                <img class="main-image" src="{{ $user->image }}" alt="Không hiển thị ảnh">
                             </div>
 
                         </div>
@@ -37,14 +37,14 @@
                             <h3 class="product-name">
                                 Email: {{ $user->email }}
                             </h3>
-                            {{-- <br>
+                            <br>
                             <h3 class="product-name">
-                                Số điện thoại
+                                Số điện thoại: {{ $user->phone }}
                             </h3>
                             <br>
                             <span class="product-name">
-                                Địa chỉ:
-                            </span> --}}
+                                Địa chỉ: {{ $user->address }}
+                            </span>
                             <br>
                             <a href="{{ route('client.shops.updateInfo') }}"><input type="submit" style="margin-top:50px"
                                     class="button button-add-cart" value="Cập nhật tài khoản"></a>

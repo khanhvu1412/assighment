@@ -8,12 +8,18 @@
 <div class="wrapper">
     <div class="login">
         <h1>Đổi mật khẩu</h1>
-        <form action="" method="post" class="form-changepassword">
+        @if (session('message'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('message') }}
+        </div>
+        @endif
+        <form action="{{ route('client.shops.changePatchPassword') }}" method="post" class="form-changepassword">
+            @csrf
+            @method('patch')
             <div class="form-input">
-
                 <p>Mật khẩu cũ</p>
                 <div class="matkhau">
-                    <input type="password" id="passwordInput1" name="matkhau" value="{{ $user->password }}">
+                    <input type="password" id="passwordInput1" name="matkhaucu" value="{{ $user->password }}">
                     <i class="far fa-eye" id="togglePassword1" onclick="togglePassword('passwordInput1')"></i>
                 </div>
 
@@ -21,7 +27,7 @@
             <div class="form-input">
                 <p>Mật khẩu mới</p>
                 <div class="matkhau">
-                    <input type="password" id="passwordInput2" name="matkhau">
+                    <input type="password" id="passwordInput2" name="matkhaumoi">
                     <i class="far fa-eye" id="togglePassword2" onclick="togglePassword('passwordInput2')"></i>
                 </div>
             </div>

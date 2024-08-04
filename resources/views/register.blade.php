@@ -19,6 +19,13 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('stylecss/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <style>
+        .image{
+            width: 475px;
+            height: 650px;
+            object-fit: cover;
+        }
+    </style>
 
 </head>
 
@@ -31,7 +38,7 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
-                        <img src="{{ asset('stylecss/img/sontung.jpg') }}" alt="Image" width="465px" height="520px">
+                        <img src="{{ asset('stylecss/img/sontung.jpg') }}" class="image" alt="Image">
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -51,14 +58,17 @@
                                         <input type="email" class="form-control form-control-user" name="email" id="email"
                                         placeholder="Email ...">
                                 </div>
-                                {{-- <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" name="address" id="address"
-                                    placeholder="Address ...">
+                                <div class="form-group">
+                                    <input type="file" class="form-control form-control-file" name="image" id="image">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="phone" id="phone"
                                     placeholder="Phone ...">
-                                </div> --}}
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="address" id="address"
+                                    placeholder="Address ...">
+                                </div>
                                 <div class="form-group ">
                                         <input type="password" class="form-control form-control-user" name="password" id="password" 
                                         placeholder="Password ...">

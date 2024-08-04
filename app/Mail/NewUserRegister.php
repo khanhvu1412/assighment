@@ -21,7 +21,7 @@ class NewUserRegister extends Mailable
 
     public function __construct(User $user)
     {
-        $this->$user;
+        $this->user->$user;
     }
 
     /**

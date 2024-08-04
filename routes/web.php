@@ -142,7 +142,12 @@ Route::group([
 
         Route::get('update-info', [HomeController::class, 'updateInfo'])->name('updateInfo');
 
+        Route::patch('update-info', [HomeController::class, 'updatePatchInfo'])->name('updatePatchInfo');
+
         Route::get('change-password', [HomeController::class, 'changePassword'])->name('changePassword');
+        
+        Route::patch('change-password', [HomeController::class, 'changePatchPassword'])->name('changePatchPassword');
+
 
 
 
