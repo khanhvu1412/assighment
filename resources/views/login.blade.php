@@ -42,6 +42,10 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Chào mừng quay trở lại</h1>
                                     </div>
+                                    {{-- @if (session('message'))
+                                        <span class="">{{ session('message') }}</span>
+                                    @endif --}}
+                                    
                                     @if (session('messageError'))
                                         <h6 class="alert alert-danger">{{ session('messageError') }}</h6>
                                     @endif

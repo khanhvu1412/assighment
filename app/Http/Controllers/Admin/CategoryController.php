@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+// use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -13,11 +14,6 @@ class CategoryController extends Controller
         return view('admin.categories.list-category')->with([
             'listCategory' => $listCategory
         ]);
-
-        // dd($listCategory);
-
-        
-        // return view('admin.categories.list-category', compact('category'));
     }
 
     public function addCategory(){
@@ -25,6 +21,14 @@ class CategoryController extends Controller
     }
 
     public function addPostCategory(Request $req){
+        $req->validate([
+            'nameDM' => 'required|min:5|max:50'
+        ], [
+            'nameDM.required' => 'Không được để trống danh mục',
+            'nameDM.min' => 'Tên danh mục phải có ít nhất 5 ký tự', 
+            'nameDM.max' => 'Tên danh mục không được quá 50 ký tự', 
+        ]);
+
         $data = [
             'name' => $req->nameDM
         ];
@@ -44,6 +48,7 @@ class CategoryController extends Controller
     }
 
     public function updateCategory($idCategory){
+        
         $category = Category::where('id', $idCategory)->first();
         return view('admin.categories.update-category')
         ->with([
@@ -54,6 +59,14 @@ class CategoryController extends Controller
 
     public function updatePatchCategory($idCategory, Request $req){
         // $category = Category::where('id', $idCategory)->first();
+        $req->validate([
+            'nameDM' => 'required|min:5|max:50'
+        ], [
+            'nameDM.required' => 'Không được để trống danh mục',
+            'nameDM.min' => 'Tên danh mục phải có ít nhất 5 ký tự', 
+            'nameDM.max' => 'Tên danh mục không được quá 50 ký tự', 
+        ]);
+
         $data = [
             'name' => $req->nameDM
         ];

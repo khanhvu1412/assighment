@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Category extends FormRequest
+class Product extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,6 @@ class Category extends FormRequest
     {
         return [
             //
-        ];
-    }
-
-    public function messages():array{
-        return [
-
         ];
     }
 }

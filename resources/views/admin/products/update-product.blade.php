@@ -27,6 +27,9 @@
                     <div class="mb-3">
                         <label for="nameSP">Tên sản phẩm</label>
                         <input type="text" name="nameSP" id="nameSP" class="form-control mt-3" value="{{ $product->name }}">
+                        @error('nameSP')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="category">Danh mục</label>
@@ -43,20 +46,32 @@
                     <div class="mb-3">
                         <label for="priceSP">Giá sản phẩm</label>
                         <input type="text" name="priceSP" id="priceSP" class="form-control mt-3" value="{{ $product->price }}">
+                        @error('priceSP')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="imageSP">Ảnh sản phẩm</label>
                         <br>
                         <img src="{{ asset($product->image) }}" alt="" class="img-product">
                         <input type="file" name="imageSP" id="imageSP" class="form-control mt-3">
+                        @error('imageSP')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="descriptionSP">Mô tả</label>
                         <textarea name="descriptionSP" id="descriptionSP" class="form-control" cols="30" rows="5" value="">{{ $product->description }}</textarea>
+                        @error('descriptionSP')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="quantity">Số lượng</label>
+                        <label for="quantitySP">Số lượng</label>
                         <input type="text" name="quantitySP" id="quantitySP" class="form-control mt-3" value="{{ $product->quantity }}"> 
+                        @error('quantitySP')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button class="btn btn-success mt-3 mb-5">Chỉnh sửa</button>
                     <a href="{{ route('admin.products.listProduct') }}" class="btn btn-primary mt-3 mb-5">Quay lại</a>

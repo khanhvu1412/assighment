@@ -5,6 +5,11 @@
         .content{
             margin-bottom: 50px;
         }
+        .main-image{
+            border-radius: 100%;
+            
+            object-fit: cover;
+        }
     </style>
 @endpush
 
@@ -21,11 +26,15 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="product-detail-image style2">
-
-                            <div class="main-image-wapper">
-                                <img class="main-image" src="{{ $user->image }}" alt="Không hiển thị ảnh">
-                            </div>
-
+                            @if ($user->image == '')
+                                <div class="main-image-wapper">
+                                    <img class="main-image" src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="Không hiển thị ảnh">
+                                </div>
+                            @else
+                                <div class="main-image-wapper">
+                                    <img class="main-image" src="{{ asset($user->image) }}" alt="Không hiển thị ảnh">
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-sm-8">

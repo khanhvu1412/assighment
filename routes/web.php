@@ -47,7 +47,7 @@ Route::group([
     'as' => 'admin.',
     'middleware' => 'checkAdmin'
 ], function () {
-
+    //Dashboard
     Route::get('dashboards', [UsersController::class, 'dashboard'])->name('dashboard');
     //Nhóm quản lý user
     Route::group([

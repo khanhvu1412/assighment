@@ -6,7 +6,13 @@
 @endsection
 
 @push('styles')
-
+    <style>
+        .img-user{
+            width: 100px;
+            height: 100px;
+            object-fit: cover; 
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -48,6 +54,15 @@
                                                 Email
                                             </th>
                                             <th class="p-0 pb-3 pe-7 text-center">
+                                                Image
+                                            </th>
+                                            <th class="p-0 pb-3 pe-7 text-center">
+                                                Phone
+                                            </th>
+                                            <th class="p-0 pb-3 pe-7 text-center">
+                                                Address
+                                            </th>
+                                            <th class="p-0 pb-3 pe-7 text-center">
                                                 Role
                                             </th>
                                             <th class="p-0 pb-3 text-center">Action</th>
@@ -59,6 +74,15 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->email }}</td>
+                                                <td>
+                                                    @if ($value->image == '')
+                                                        <img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="  class="img-user" alt="">
+                                                    @else
+                                                        <img src="{{ asset($value->image) }}" class="img-user" alt="">
+                                                    @endif
+                                                </td>
+                                                <td>{{ $value->phone }}</td>
+                                                <td>{{ $value->address }}</td>
                                                 <td>{{ $value->role == 1 ? 'Admin' : 'User'  }}</td>
                                                 <td>
                                                     <a href="{{ route('admin.users.detailUsers', $value->id) }}" class="btn btn-primary">Chi tiết</a>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 // use App\Mail\ForgotPassword;
-use App\Mail\NewUserRegister;
 // use App\Models\CustomerResetToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Authentication
@@ -11,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Session;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserRegister;
+
 
 // use Illuminate\Support\Str;
 
@@ -78,7 +79,7 @@ class AuthenController extends Controller
 
     public function postRegister(Request $req)
     {
-        
+
         $check = User::where('email', $req->email)->exists();
         if ($check) {
             return redirect()->back()->with([
@@ -87,31 +88,41 @@ class AuthenController extends Controller
         } else {
 
             $linkImage = '';
-            if ($req->hasFile('image')){
-            $image = $req->file('image');
-            $newName = time() . '.' . $image->getClientOriginalExtension();
-            $linkStorage = 'imageUsers/';
-            $image->move(public_path($linkStorage), $newName);
+            if ($req->hasFile('image')) {
+                $image = $req->file('image');
+                $newName = time() . '.' . $image->getClientOriginalExtension();
+                $linkStorage = 'imageUsers/';
+                $image->move(public_path($linkStorage), $newName);
 
-            $linkImage = $linkStorage . $newName;
+                $linkImage = $linkStorage . $newName;
             }
 
             $data = [
                 'name' => $req->name,
                 'email' => $req->email,
+                'image' => $linkImage,
                 'phone' => $req->phone,
                 'address' => $req->address,
-                'password' => Hash::make($req->password),
-                'image' => $linkImage
+                'password' => Hash::make($req->password)
+
             ];
+
+            // dd($data);
 
             $newUser = User::create($data);
 
             // if(!$newUser){
             //     return redirect()->back()->withErrors('Đã có lỗi xảy ra khi đăng ký');
             // }
-            // Gửi mail thông báo
+            // // Gửi mail thông báo
+            // Mail::send('emails.new_user_register', compact('data'), function($email) use ($data){
+            //     $email->to($data['email']);
+            //     $email->subject('Đăng ký thành công');
+            // });
+
             // Mail::to($newUser->email)->send(new NewUserRegister($newUser));
+
+            // new NewUserRegister($newUser)
 
             // C1
             // Auth::login( $newUser ); // Tự dộng đăng nhập cho user này
@@ -120,7 +131,7 @@ class AuthenController extends Controller
 
             // C2
             return redirect()->route('login')->with([
-                'message' => 'Đăng ký thành công. Vui lòng đăng nhập'
+                'messageError' => 'Đăng ký thành công. Vui lòng đăng nhập'
             ]);
 
         }

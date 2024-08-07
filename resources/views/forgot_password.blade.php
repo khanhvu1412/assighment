@@ -49,6 +49,7 @@
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="{{ route('login') }}">Đăng nhập ngay!</a>
+                                <a href="{{ route('register') }}">Bạn chưa có tài khoản. Đăng ký ngay</a>
                             </div>
                         </div>
                     </div>

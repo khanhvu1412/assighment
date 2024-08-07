@@ -39,6 +39,30 @@ class ProductsController extends Controller
         // $product->save();
 
         // C2
+        $req->validate([
+            'nameSP' => 'required|min:5|max:50',
+            'priceSP' => 'required|numeric',
+            'descriptionSP' => 'required|max:200',
+            'quantitySP' => 'required|integer',
+            'imageSP' => 'image',
+
+        ], [
+            'nameSP.required' => 'Tên sản phẩm không được để trống',
+            'nameSP.min' => 'Tên sản phẩm phải có 5 ký tự',
+            'nameSP.max' => 'Tên sản phẩm không quá 50 ký tự',
+
+            'priceSP.required' => 'Giá sản phẩm không được để trống',
+            'priceSP.numeric' => 'Giá sản phẩm phải là số nguyên',
+            
+            'descriptionSP.required' => 'Không được để trống mô tả',
+            'descriptionSP.max' => 'Mô tả không được quá 200',
+
+            'quantitySP.required' => 'Không được để trống số lượng',
+            'quantitySP.integer' => 'Số lượng phải là số nguyên',
+
+            'imageSP.image' => 'Image phải đúng định dạng(jpeg, png, bmp, gif, svg, hoặc webp)',
+        ]);
+
         $linkImage = '';
         if ($req->hasFile('imageSP')) {
             $image = $req->file('imageSP');
@@ -121,6 +145,30 @@ class ProductsController extends Controller
 
     public function updatePatchProduct($idProduct, Request $req)
     {
+
+        $req->validate([
+            'nameSP' => 'required|min:5|max:50',
+            'priceSP' => 'required|numeric',
+            'descriptionSP' => 'required|max:200',
+            'quantitySP' => 'required|integer',
+            'imageSP' => 'image',
+
+        ], [
+            'nameSP.required' => 'Tên sản phẩm không được để trống',
+            'nameSP.min' => 'Tên sản phẩm phải có 5 ký tự',
+            'nameSP.max' => 'Tên sản phẩm không quá 50 ký tự',
+
+            'priceSP.required' => 'Giá sản phẩm không được để trống',
+            'priceSP.numeric' => 'Giá sản phẩm phải là số nguyên',
+            
+            'descriptionSP.required' => 'Không được để trống mô tả',
+            'descriptionSP.max' => 'Mô tả không được quá 200',
+
+            'quantitySP.required' => 'Không được để trống số lượng',
+            'quantitySP.integer' => 'Số lượng phải là số nguyên',
+            
+            'imageSP.image' => 'Image phải đúng định dạng(jpeg, png, bmp, gif, svg, hoặc webp)',
+        ]);
         // $linkImage = '';
         $product = Product::where('id', $idProduct)->first();
         $linkImage = $product->image;

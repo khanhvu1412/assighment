@@ -13,7 +13,7 @@ class UsersController extends Controller
     }
     public function listUsers()
     {
-        $listUser = User::select('id','name', 'email', 'role')
+        $listUser = User::select('id', 'name', 'email','image', 'phone', 'address', 'role')
             ->paginate(5);
         return view('admin.users.list-user')->with([
             'listUser' => $listUser

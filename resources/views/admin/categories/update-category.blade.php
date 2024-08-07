@@ -21,8 +21,12 @@
                     <div class="mb-3">
                         <label for="nameDM">Tên danh mục</label>
                         <input type="text" name="nameDM" id="nameDM" class="form-control mt-3" value="{{ $category->name }}">
+                        @error('nameDM')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button class="btn btn-success mt-3 mb-5">Cập nhật</button>
+                    <a href="{{ route('admin.categories.listCategory') }}" class="btn btn-primary mt-3 mb-5" >Quay lại</a>
                 </form>
             </div>
         </div>

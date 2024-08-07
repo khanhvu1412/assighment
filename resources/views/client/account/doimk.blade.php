@@ -8,18 +8,19 @@
 <div class="wrapper">
     <div class="login">
         <h1>Đổi mật khẩu</h1>
-        @if (session('message'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('message') }}
-        </div>
-        @endif
+        
         <form action="{{ route('client.shops.changePatchPassword') }}" method="post" class="form-changepassword">
             @csrf
             @method('patch')
+            @if (session('message'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
             <div class="form-input">
                 <p>Mật khẩu cũ</p>
                 <div class="matkhau">
-                    <input type="password" id="passwordInput1" name="matkhaucu" value="{{ $user->password }}">
+                    <input type="password" id="passwordInput1" name="matkhaucu" >
                     <i class="far fa-eye" id="togglePassword1" onclick="togglePassword('passwordInput1')"></i>
                 </div>
 
@@ -32,8 +33,7 @@
                 </div>
             </div>
             <div class="login-btn">
-
-                <input type="submit" name="doimk" value="Cập nhật" onclick="return confirmDoimk()">
+                <input type="submit" name="doimk" value="Cập nhật">
             </div>
             <div class="forget-password">
                 <a href="{{ route('client.shops.userInfo') }}">Về trang tài khoản</a>

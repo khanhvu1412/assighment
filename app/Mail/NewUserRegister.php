@@ -21,7 +21,7 @@ class NewUserRegister extends Mailable
 
     public function __construct(User $user)
     {
-        $this->user->$user;
+        $this->user = $user;
     }
 
     /**
@@ -36,9 +36,8 @@ class NewUserRegister extends Mailable
 
     public function build(){
         return $this->view('emails.new_user_resgister') // Chỉ định view Email
-                    ->subject('Đăng ký thành công');
-
-                    // ->with(['user' => $this->user]);
+                    ->subject('Đăng ký thành công')
+                    ->with(['user' => $this->user]);
     }
 
     /**

@@ -48,7 +48,7 @@
                             @if (session('message'))
                                 <h6 class="alert alert-danger">{{ session('message') }}</h6>
                             @endif
-                            <form class="user" action="{{ route('postRegister') }}" method="post">
+                            <form class="user" action="{{ route('postRegister') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                         <input type="text" class="form-control form-control-user" name="name" id="name" 

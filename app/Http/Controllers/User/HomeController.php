@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -133,17 +134,18 @@ class HomeController extends Controller
     }
 
     public function updatePatchInfo(Request $req){
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
 
         $linkImage = $user->image; // Giữ ảnh hiện tại
-            if ($req->hasFile('image')){
-            $image = $req->file('image');
-            $newName = time() . '.' . $image->getClientOriginalExtension();
-            $linkStorage = 'imageUsers/';
-            $image->move(public_path($linkStorage), $newName);
+        if ($req->hasFile('imageUS')){
+        $image = $req->file('imageUS');
+        $newName = time() . '.' . $image->getClientOriginalExtension();
+        $linkStorage = 'imageUsers/';
+        $image->move(public_path($linkStorage), $newName);
 
-            $linkImage = $linkStorage . $newName;
-            }
+        $linkImage = $linkStorage . $newName;
+        }
+
         $data = [
             'name' => $req->nameUS,
             'email' => $req->emailUS,
@@ -152,6 +154,7 @@ class HomeController extends Controller
             'image' => $linkImage
 
         ];
+        // dd($data);
         
         $user->update($data);
         return redirect()->back()->with([
@@ -167,24 +170,29 @@ class HomeController extends Controller
     }
 
     public function changePatchPassword(Request $req){
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
+        // Auth::user()
 
-        $req->validate([
-            'matkhaucu' => 'required',
-            'matkhaumoi' => 'required|string:8|confirmed',
-        ]);
+        // $req->validate([
+        //     'matkhaucu' => 'required',
+        //     'matkhaumoi' => 'required|string:8|confirmed',
+        // ]);
 
         // Kiểm tra matkhaumoi có khớp không
-        if(!Hash::check($req->matkhaucu, $user->password)){
-            return redirect()->back()->with([
-                'message' => 'Mật khẩu cũ không đúng'
-            ]);
-        }
+        // if(!Hash::check($req->matkhaucu, $user->password)){
+        //     return redirect()->back()->with([
+        //         'message' => 'Mật khẩu cũ không đúng'
+        //     ]);
+        // }
 
         // Cập nhật mật khẩu
         $user->password = Hash::make($req->matkhaumoi);
         $user->save();
 
+        // dd($req->all('matkhaucu', 'matkhaumoi'));
+        // return redirect()->route('login')->with([
+        //     'message' => 'Đổi mật khẩu thành công'
+        // ]);
         return redirect()->back()->with([
             'message' => 'Đổi mật khẩu thành công'
         ]);

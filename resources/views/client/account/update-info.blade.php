@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-input">
                         <p>Ảnh</p>
-                        <input type="file" class="form-control" name="imageUS" value="{{ $user->image }}">
+                        <input type="file" accept="image/*" class="form-control" name="imageUS" value="{{ $user->image }}">
                     </div>    
                     <div class="form-input">
                         <p>Số điện thoại</p>

@@ -29,7 +29,7 @@
                     id="kt_app_header_menu" data-kt-menu="true">
                     <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
                                 data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                        <a href="{{ route('admin.products.listProduct') }}" >
+                        <a href="{{ route('admin.dashboard') }}" >
                             <span class="menu-link">
                                 <span class="menu-title">Dashboards</span>
                                 <span class="menu-arrow d-lg-none"></span>
